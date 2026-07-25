@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicOrganiserApi", "MusicOrganiserApi\MusicOrganiserApi.csproj", "{CDCEE6A7-5AAC-4F85-A6E4-3029FC77C69A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{CDCEE6A7-5AAC-4F85-A6E4-3029FC77C69A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicOrganiserBlazorApp", "MusicOrganiserBlazorApp\MusicOrganiserBlazorApp.csproj", "{3D84DEC1-29E3-4D84-A23D-097EA7274AB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{3D84DEC1-29E3-4D84-A23D-097EA7274AB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

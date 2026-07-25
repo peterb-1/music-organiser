@@ -1,0 +1,16 @@
+﻿@page "/math"
+@inject HttpClient Http
+
+<h3>Math</h3>
+
+<p>Result: @result</p>
+<button @onclick="CallApi">Add</button>
+
+@code {
+    private int result;
+
+    private async Task CallApi()
+    {
+        result = await Http.GetFromJsonAsync<int>("math/add?a=3&b=5");
+    }
+}

@@ -1,20 +1,19 @@
-﻿using System.Net.Http.Json;
+﻿using Client.Utils;
 using Shared.DTOs;
 
 namespace Client.Services;
 
 public class MathService
 {
-    private HttpClient HttpClient { get; }
+    private ApiClient ApiClient { get; }
 
-    public MathService(HttpClient httpClient)
+    public MathService(ApiClient apiClient)
     {
-        HttpClient = httpClient;
+        ApiClient = apiClient;
     }
 
-    public async Task<MathResult?> AddAsync(MathRequest request)
+    public async Task<Maybe<MathResult>> AddAsync(MathRequest request)
     {
-        var response = await HttpClient.PostAsJsonAsync("math/add", request);
-        return await response.Content.ReadFromJsonAsync<MathResult>();
+        return await ApiClient.Post<MathRequest, MathResult>("math/add", request);
     }
 }

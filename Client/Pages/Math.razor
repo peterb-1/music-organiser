@@ -1,5 +1,6 @@
 ﻿@page "/math"
 @using Client.Services
+@using Client.Utils
 @using Shared.DTOs
 @inject MathService MathService
 
@@ -13,10 +14,8 @@
     private async Task CallApi()
     {
         var request = new MathRequest { A = 3, B = 5 };
-        var result = await MathService.AddAsync(request);
-        if (result != null)
-        {
-            Result = result.Result;
-        }
+
+        await MathService.AddAsync(request)
+            .Then(mathResult => Result = mathResult.Result);
     }
 }

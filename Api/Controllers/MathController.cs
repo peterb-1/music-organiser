@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.DTOs;
 
 namespace Api.Controllers;
 
@@ -6,9 +7,9 @@ namespace Api.Controllers;
 [Route("[controller]")]
 public class MathController : ControllerBase
 {
-    [HttpGet("add")]
-    public int Add([FromQuery] int a, [FromQuery] int b)
+    [HttpPost("add")]
+    public MathResult Add(MathRequest request)
     {
-        return a + b;
+        return new MathResult { Result = request.A + request.B };
     }
 }

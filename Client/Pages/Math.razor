@@ -1,16 +1,22 @@
 ﻿@page "/math"
-@inject HttpClient Http
+@using Client.Services
+@using Shared.DTOs
+@inject MathService MathService
 
 <h3>Math</h3>
-
-<p>Result: @result</p>
+<p>Result: @Result</p>
 <button @onclick="CallApi">Add</button>
 
 @code {
-    private int result;
+    private int Result { get; set; }
 
     private async Task CallApi()
     {
-        result = await Http.GetFromJsonAsync<int>("math/add?a=3&b=5");
+        var request = new MathRequest { A = 3, B = 5 };
+        var result = await MathService.AddAsync(request);
+        if (result != null)
+        {
+            Result = result.Result;
+        }
     }
 }

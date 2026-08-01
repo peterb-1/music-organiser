@@ -1,9 +1,13 @@
+using Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 const string CORS_POLICY_NAME = "MyCorsPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=MusicOrganiser.db"));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(CORS_POLICY_NAME, policy =>

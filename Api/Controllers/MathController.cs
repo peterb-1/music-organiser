@@ -8,8 +8,8 @@ namespace Api.Controllers;
 public class MathController : ControllerBase
 {
     [HttpPost("add")]
-    public MathResult Add(MathRequest request)
+    public IActionResult Add(MathRequest request)
     {
-        return new MathResult { Result = request.A + request.B };
+        return Ok(new MathResult { Result = request.A + request.B });
     }
 }

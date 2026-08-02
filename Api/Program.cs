@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=MusicOrganiser.db"));
 builder.Services.AddCors(options =>
 {

@@ -3,14 +3,9 @@ using Shared.DTOs;
 
 namespace Client.Services;
 
-public class MathService
+public class MathService(ApiClient apiClient)
 {
-    private ApiClient ApiClient { get; }
-
-    public MathService(ApiClient apiClient)
-    {
-        ApiClient = apiClient;
-    }
+    private ApiClient ApiClient { get; } = apiClient;
 
     public async Task<Maybe<MathResult>> AddAsync(MathRequest request)
     {

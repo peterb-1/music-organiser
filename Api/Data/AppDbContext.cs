@@ -1,4 +1,5 @@
 ﻿using Api.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<IdentityPasskeyData>().HasNoKey();
         modelBuilder.Entity<Song>().HasKey(song => song.SpotifyId);
         modelBuilder.Entity<UserSong>().HasKey(userSong => new { userSong.SpotifyId, userSong.UserId });
         modelBuilder.Entity<SongAttributeValue>().HasKey(attributeValue => new { attributeValue.UserId, attributeValue.SpotifyId, attributeValue.UserAttributeId });

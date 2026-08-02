@@ -33,14 +33,15 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
-{
-    options.AddPolicy(CORS_POLICY_NAME, policy =>
-        policy.WithOrigins("https://localhost:7293")
-            .AllowAnyMethod()
-            .AllowAnyHeader());
-});
+    {
+        options.AddPolicy(CORS_POLICY_NAME, policy =>
+            policy.WithOrigins("https://localhost:7293")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+        );
+    });
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=MusicOrganiser.db"));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();;
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails();
 builder.Services.AddScoped<TokenService>();

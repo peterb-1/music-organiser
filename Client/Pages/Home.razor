@@ -1,7 +1,11 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+@using Client.Services
+@using Client.Components
 
-<h1>Hello, world!</h1>
+@inject AuthenticationService AuthenticationService
+@inject NavigationManager NavigationManager
 
-Welcome to your new app.
+<AuthenticationGuard>
+    <h1>Welcome</h1>
+</AuthenticationGuard>

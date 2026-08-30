@@ -1,0 +1,14 @@
+﻿@page "/authentication"
+
+@using Client.Components
+
+@inject NavigationManager NavigationManager
+
+<AuthenticationForm OnSuccess="@HandleAuthenticationSuccess"></AuthenticationForm>
+
+@code {
+    private void HandleAuthenticationSuccess()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

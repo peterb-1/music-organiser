@@ -58,6 +58,10 @@ nunit-*.xml
 
 # IDE
 *.idea
+*.user
 
 # Database
 *.db
+*.db-shm
+*.db-wal
+*.sqlite

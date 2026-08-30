@@ -14,7 +14,6 @@ builder.Services.AddLocalStorageServices();
 builder.Services.AddScoped<ApiClient>();
 builder.Services.AddScoped<AuthenticationHandler>();
 builder.Services.AddScoped<AuthenticationService>();
-builder.Services.AddScoped<MathService>();
 builder.Services.AddScoped(sp => 
 {
     var handler = sp.GetRequiredService<AuthenticationHandler>();

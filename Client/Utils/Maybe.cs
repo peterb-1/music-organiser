@@ -32,6 +32,18 @@ public static class Maybe
         return maybe;
     }
 
+    public static async Task<Maybe<T>> Then<T>(this Task<Maybe<T>> task, Func<T, Task> action)
+    {
+        var maybe = await task;
+
+        if (maybe is Maybe<T>.Success success)
+        {
+            await action(success.Value);
+        }
+
+        return maybe;
+    }
+
     public static async Task<Maybe<T>> Catch<T>(this Task<Maybe<T>> task, Action<string> action)
     {
         var maybe = await task;
@@ -44,10 +56,29 @@ public static class Maybe
         return maybe;
     }
 
+    public static async Task<Maybe<T>> Catch<T>(this Task<Maybe<T>> task, Func<string, Task> action)
+    {
+        var maybe = await task;
+
+        if (maybe is Maybe<T>.Failure failure)
+        {
+            await action(failure.Error);
+        }
+
+        return maybe;
+    }
+
     public static async Task Finally<T>(this Task<Maybe<T>> task, Action action)
     {
         await task;
 
         action();
+    }
+
+    public static async Task Finally<T>(this Task<Maybe<T>> task, Func<Task> action)
+    {
+        await task;
+
+        await action();
     }
 }

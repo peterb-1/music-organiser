@@ -16,9 +16,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<ApplicationUser>().HasIndex(user => user.SpotifyUserId).IsUnique();
         modelBuilder.Entity<IdentityPasskeyData>().HasNoKey();
         modelBuilder.Entity<Song>().HasKey(song => song.SpotifyId);
-        modelBuilder.Entity<UserSong>().HasKey(userSong => new { userSong.SpotifyId, userSong.UserId });
         modelBuilder.Entity<SongAttributeValue>().HasKey(attributeValue => new { attributeValue.UserId, attributeValue.SpotifyId, attributeValue.UserAttributeId });
+        modelBuilder.Entity<UserSong>().HasKey(userSong => new { userSong.SpotifyId, userSong.UserId });
     }
 }

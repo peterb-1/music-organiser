@@ -39,16 +39,9 @@ public class AuthenticationService
         return !string.IsNullOrWhiteSpace(token);
     }
 
-    public async Task<Maybe<TokenResponse>> LoginAsync(LoginRequest request)
+    public void LoginWithSpotify()
     {
-        return await ApiClient.Post<LoginRequest, TokenResponse>("authentication/login", request)
-            .Then(ProcessResponse);
-    }
-
-    public async Task<Maybe<TokenResponse>> RegisterAsync(RegisterRequest request)
-    {
-        return await ApiClient.Post<RegisterRequest, TokenResponse>("authentication/register", request)
-            .Then(ProcessResponse);
+        ApiClient.NavigateToApi("authentication/spotify/login");
     }
 
     private async Task ProcessResponse(TokenResponse response)

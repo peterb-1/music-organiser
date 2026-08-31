@@ -15,12 +15,12 @@ else
 @code {
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
 
-    private bool IsChecked { get; set; } = false;
+    private bool IsChecked { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await AuthenticationService.EnsureInitializedAsync();
-        
+
         if (!AuthenticationService.TryGetToken(out _))
         {
             NavigationManager.NavigateTo("/authentication");

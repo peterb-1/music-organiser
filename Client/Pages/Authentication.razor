@@ -1,14 +1,13 @@
 ﻿@page "/authentication"
 
-@using Client.Components
+@using Client.Services
 
-@inject NavigationManager NavigationManager
+@inject AuthenticationService AuthenticationService
 
-<AuthenticationForm OnSuccess="@HandleAuthenticationSuccess"></AuthenticationForm>
-
+<button @onclick="RedirectToSpotify">Login with Spotify</button>
 @code {
-    private void HandleAuthenticationSuccess()
+    private void RedirectToSpotify()
     {
-        NavigationManager.NavigateTo("/");
+        AuthenticationService.LoginWithSpotify();
     }
 }

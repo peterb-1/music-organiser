@@ -1,11 +1,13 @@
 ﻿using System.Net.Http.Json;
+using Microsoft.AspNetCore.Components;
 using Shared.DTOs;
 
 namespace Client.Utils;
 
-public class ApiClient(HttpClient httpClient)
+public class ApiClient(HttpClient httpClient, NavigationManager navigationManager)
 {
     private HttpClient HttpClient { get; } = httpClient;
+    private NavigationManager NavigationManager { get; } = navigationManager;
 
     public async Task<Maybe<TResult>> Get<TResult>(string requestUri)
     {
@@ -45,5 +47,11 @@ public class ApiClient(HttpClient httpClient)
         return result != null
             ? Maybe.Success(result)
             : Maybe.Failure<TResult>("Empty response.");
+    }
+
+    public void NavigateToApi(string relativePath)
+    {
+        var baseUrl = HttpClient.BaseAddress!.ToString().TrimEnd('/');
+        NavigationManager.NavigateTo($"{baseUrl}/{relativePath.TrimStart('/')}", forceLoad: true);
     }
 }
